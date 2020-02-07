@@ -16,7 +16,8 @@
                       android:layout_margin="20dp"
                       android:orientation="vertical">
 
-            <EditText android:layout_width="match_parent"
+            <EditText android:id="@+id/username"
+                      android:layout_width="match_parent"
                       android:layout_height="48dp"
                       android:background="@drawable/edit_text_background"
                       android:drawableStart="@drawable/ic_user"
@@ -27,7 +28,8 @@
                       android:inputType="textPersonName"
                       android:textSize="21sp"/>
 
-            <EditText android:layout_width="match_parent"
+            <EditText android:id="@+id/password"
+                      android:layout_width="match_parent"
                       android:layout_height="48dp"
                       android:background="@drawable/edit_text_background"
                       android:drawableStart="@drawable/ic_password"
@@ -38,8 +40,7 @@
                       android:inputType="textPassword"
                       android:textSize="21sp"/>
 
-            <Button
-                    android:id="@+id/login"
+            <Button android:id="@+id/login"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="30dp"
@@ -48,14 +49,14 @@
                     android:textAllCaps="false"
                     android:textSize="21sp" />
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="end"
-                    android:text="Sign Up"
-                    android:textSize="21sp" />
+            <TextView android:id="@+id/signup"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:paddingTop="30dp"
+                      android:layout_marginBottom="10dp"
+                      android:gravity="end"
+                      android:text="Sign Up"
+                      android:textSize="21sp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
