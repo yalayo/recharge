@@ -21,16 +21,12 @@ class LoginActivity : AppCompatActivity() {
 
         AWSMobileClient.getInstance().initialize(applicationContext, object : Callback<UserStateDetails> {
             override fun onResult(userStateDetails: UserStateDetails) {
-                Log.i("INIT", "onResult: " + userStateDetails.userState)
-
                 when (userStateDetails.userState) {
                     UserState.SIGNED_IN -> runOnUiThread {
-                        val textView = findViewById<View>(R.id.text) as TextView
-                        textView.text = "Logged IN"
+                        Log.i("INIT", "onResult: " + userStateDetails.userState)
                     }
                     UserState.SIGNED_OUT -> runOnUiThread {
-                        val textView = findViewById<View>(R.id.text) as TextView
-                        textView.text = "Logged OUT"
+                        Log.i("INIT", "onResult: " + userStateDetails.userState)
                     }
                     else -> AWSMobileClient.getInstance().signOut()
                 }
