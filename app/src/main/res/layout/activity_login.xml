@@ -8,42 +8,54 @@
         android:background="@drawable/login_background"
         tools:context=".users.ui.LoginActivity">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_centerInParent="true"
-                  android:layout_margin="20dp"
-                  android:orientation="vertical">
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="20dp"
+                      android:orientation="vertical">
 
-        <EditText android:layout_width="match_parent"
-                  android:layout_height="48dp"
-                  android:background="@drawable/edit_text_background"
-                  android:drawableStart="@drawable/ic_user"
-                  android:drawableLeft="@drawable/ic_user"
-                  android:layout_marginBottom="10dp"
-                  android:padding="10dp"
-                  android:hint="Username"
-                  android:inputType="textPersonName"
-                  android:textSize="21sp"/>
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="48dp"
+                      android:background="@drawable/edit_text_background"
+                      android:drawableStart="@drawable/ic_user"
+                      android:drawableLeft="@drawable/ic_user"
+                      android:layout_marginBottom="10dp"
+                      android:padding="10dp"
+                      android:hint="Username"
+                      android:inputType="textPersonName"
+                      android:textSize="21sp"/>
 
-        <EditText android:layout_width="match_parent"
-                  android:layout_height="48dp"
-                  android:background="@drawable/edit_text_background"
-                  android:drawableStart="@drawable/ic_password"
-                  android:drawableLeft="@drawable/ic_password"
-                  android:layout_marginBottom="10dp"
-                  android:padding="10dp"
-                  android:hint="Password"
-                  android:inputType="textPassword"
-                  android:textSize="21sp"/>
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="48dp"
+                      android:background="@drawable/edit_text_background"
+                      android:drawableStart="@drawable/ic_password"
+                      android:drawableLeft="@drawable/ic_password"
+                      android:layout_marginBottom="10dp"
+                      android:padding="10dp"
+                      android:hint="Password"
+                      android:inputType="textPassword"
+                      android:textSize="21sp"/>
 
-        <Button
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/button_background"
-                android:text="Log in"
-                android:textAllCaps="false"
-                android:textSize="21sp" />
-    </LinearLayout>
+            <Button
+                    android:id="@+id/login"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/button_background"
+                    android:text="Log in"
+                    android:textAllCaps="false"
+                    android:textSize="21sp" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="end"
+                    android:text="Sign Up"
+                    android:textSize="21sp" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
