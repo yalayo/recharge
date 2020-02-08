@@ -20,7 +20,10 @@
         <activity android:name=".users.ui.SignupActivity"
                   android:theme="@style/LoginPage"
                   android:windowSoftInputMode="adjustResize">
-
+        </activity>
+        <activity android:name=".users.ui.ConfirmSignupActivity"
+                  android:theme="@style/LoginPage"
+                  android:windowSoftInputMode="adjustResize">
         </activity>
     </application>
 
