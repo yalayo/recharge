@@ -28,7 +28,7 @@
                       android:inputType="textPersonName"
                       android:textSize="21sp"/>
 
-            <EditText android:id="@+id/phone_number"
+            <EditText android:id="@+id/phoneNumber"
                       android:layout_width="match_parent"
                       android:layout_height="48dp"
                       android:background="@drawable/edit_text_background"
@@ -37,10 +37,10 @@
                       android:layout_marginBottom="10dp"
                       android:padding="10dp"
                       android:hint="Phone number"
-                      android:inputType="textPersonName"
+                      android:inputType="phone"
                       android:textSize="21sp"/>
 
-            <EditText android:id="@+id/email"
+            <EditText android:id="@+id/signupEmail"
                       android:layout_width="match_parent"
                       android:layout_height="48dp"
                       android:background="@drawable/edit_text_background"
@@ -49,10 +49,10 @@
                       android:layout_marginBottom="10dp"
                       android:padding="10dp"
                       android:hint="Email"
-                      android:inputType="textPersonName"
+                      android:inputType="textEmailAddress"
                       android:textSize="21sp"/>
 
-            <EditText android:id="@+id/password"
+            <EditText android:id="@+id/signupPassword"
                       android:layout_width="match_parent"
                       android:layout_height="48dp"
                       android:background="@drawable/edit_text_background"
@@ -64,7 +64,7 @@
                       android:inputType="textPassword"
                       android:textSize="21sp"/>
 
-            <EditText android:id="@+id/confirm_password"
+            <EditText android:id="@+id/signupConfirmPassword"
                       android:layout_width="match_parent"
                       android:layout_height="48dp"
                       android:background="@drawable/edit_text_background"
@@ -76,7 +76,7 @@
                       android:inputType="textPassword"
                       android:textSize="21sp"/>
 
-            <Button android:id="@+id/signup"
+            <Button android:id="@+id/signupUser"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="30dp"
