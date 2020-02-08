@@ -93,8 +93,8 @@ class SignupActivity : AppCompatActivity() {
                 runOnUiThread {
                     Log.d("SIGN_UP", "Sign-up callback state: " + signUpResult.confirmationState)
                     if (!signUpResult.confirmationState) {
-                        val signupActivity = Intent(this@SignupActivity, ConfirmSignupActivity::class.java)
-                        startActivity(signupActivity)
+                        val confirmSignupActivity = Intent(this@SignupActivity, ConfirmSignupActivity::class.java)
+                        startActivity(confirmSignupActivity)
                     } else {
 
                     }

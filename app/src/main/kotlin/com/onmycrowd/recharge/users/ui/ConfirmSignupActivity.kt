@@ -1,6 +1,7 @@
 
 package com.onmycrowd.recharge.users.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -62,7 +63,8 @@ class ConfirmSignupActivity : AppCompatActivity() {
                         val details = signUpResult.userCodeDeliveryDetails
                         Log.d("SIGN_UP", "Confirm sign-up with: " + details.destination)
                     } else {
-                        Log.d("SIGN_UP", "Sign-up confirmed.")
+                        val loginActivity = Intent(this@ConfirmSignupActivity, LoginActivity::class.java)
+                        startActivity(loginActivity)
                     }
                 }
             }
