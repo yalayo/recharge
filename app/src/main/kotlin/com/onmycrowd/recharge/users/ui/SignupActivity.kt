@@ -2,29 +2,20 @@
 package com.onmycrowd.recharge.users.ui
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
-import android.view.View
 import android.widget.EditText
-import com.onmycrowd.recharge.R
-import com.amazonaws.mobile.client.UserStateDetails
+import android.widget.Toast
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobile.client.Callback
-import android.widget.TextView
-import android.widget.Toast
-import com.amazonaws.mobile.client.UserState
 import com.amazonaws.mobile.client.results.SignUpResult
-import kotlinx.android.synthetic.main.activity_login.*
+import com.onmycrowd.recharge.R
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.regex.Pattern
-import com.amazonaws.mobile.client.results.UserCodeDeliveryDetails
-
-
 
 
 class SignupActivity : AppCompatActivity() {
@@ -35,7 +26,9 @@ class SignupActivity : AppCompatActivity() {
 
         signupUser.setOnClickListener {
             name.validate("Name should not be empty") { s -> s.isNotEmpty() }
+
             phoneNumber.validate("Phone number should not be empty") { s -> s.isNotEmpty() }
+            phoneNumber.validate("Phone number should be only 8 numbers (no spaces)") { s -> s.isValidPhoneNumber() }
 
             signupEmail.validate("Email should not be empty") { s -> s.isNotEmpty() }
             signupEmail.validate("Valid email address required") { s -> s.isValidEmail() }
@@ -54,13 +47,11 @@ class SignupActivity : AppCompatActivity() {
             val email = signupEmail.text.toString()
             val attributes = mapOf(
                     "name" to name.text.toString(),
-                    "phone_number" to phoneNumber.text.toString(),
+                    "phone_number" to "+53${phoneNumber.text.toString()}",
                     "email" to email
             )
 
-            signUpUser(email, signupPassword.text.toString(), attributes)
-
-            Toast.makeText(this, "Thank you. An email was sent to your email address.", Toast.LENGTH_SHORT).show()
+            requestSignUp(email, signupPassword.text.toString(), attributes)
         }
     }
 
@@ -91,16 +82,21 @@ class SignupActivity : AppCompatActivity() {
         return this.isNotEmpty() && pattern.matcher(this).matches()
     }
 
-    private fun signUpUser(email: String, password: String, attributes: Map<String, String>) {
+    private fun String.isValidPhoneNumber(): Boolean {
+        val pattern = Pattern.compile("^[0-9]{8}\$")
+        return this.isNotEmpty() && pattern.matcher(this).matches()
+    }
+
+    private fun requestSignUp(email: String, password: String, attributes: Map<String, String>) {
         AWSMobileClient.getInstance().signUp(email, password, attributes, null, object : Callback<SignUpResult> {
             override fun onResult(signUpResult: SignUpResult) {
                 runOnUiThread {
                     Log.d("SIGN_UP", "Sign-up callback state: " + signUpResult.confirmationState)
                     if (!signUpResult.confirmationState) {
-                        val details = signUpResult.userCodeDeliveryDetails
-                        Log.d("SIGN_UP", "Confirm sign-up with: " + details.destination)
+                        val signupActivity = Intent(this@SignupActivity, ConfirmSignupActivity::class.java)
+                        startActivity(signupActivity)
                     } else {
-                        Log.d("SIGN_UP", "Sign-up done.")
+
                     }
                 }
             }
