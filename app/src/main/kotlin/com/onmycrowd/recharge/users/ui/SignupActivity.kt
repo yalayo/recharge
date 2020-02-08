@@ -4,6 +4,7 @@ package com.onmycrowd.recharge.users.ui
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -17,9 +18,13 @@ import com.amazonaws.mobile.client.Callback
 import android.widget.TextView
 import android.widget.Toast
 import com.amazonaws.mobile.client.UserState
+import com.amazonaws.mobile.client.results.SignUpResult
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.regex.Pattern
+import com.amazonaws.mobile.client.results.UserCodeDeliveryDetails
+
+
 
 
 class SignupActivity : AppCompatActivity() {
@@ -46,7 +51,16 @@ class SignupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            Toast.makeText(this, "REGLIS LOFORTE IMBERT =========> Que te parece?", Toast.LENGTH_SHORT).show()
+            val email = signupEmail.text.toString()
+            val attributes = mapOf(
+                    "name" to name.text.toString(),
+                    "phone_number" to phoneNumber.text.toString(),
+                    "email" to email
+            )
+
+            signUpUser(email, signupPassword.text.toString(), attributes)
+
+            Toast.makeText(this, "Thank you. An email was sent to your email address.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -75,5 +89,25 @@ class SignupActivity : AppCompatActivity() {
     private fun String.isValidPassword(): Boolean {
         val pattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[@#$%^&+=.])(?=\\S+$).{8,}$")
         return this.isNotEmpty() && pattern.matcher(this).matches()
+    }
+
+    private fun signUpUser(email: String, password: String, attributes: Map<String, String>) {
+        AWSMobileClient.getInstance().signUp(email, password, attributes, null, object : Callback<SignUpResult> {
+            override fun onResult(signUpResult: SignUpResult) {
+                runOnUiThread {
+                    Log.d("SIGN_UP", "Sign-up callback state: " + signUpResult.confirmationState)
+                    if (!signUpResult.confirmationState) {
+                        val details = signUpResult.userCodeDeliveryDetails
+                        Log.d("SIGN_UP", "Confirm sign-up with: " + details.destination)
+                    } else {
+                        Log.d("SIGN_UP", "Sign-up done.")
+                    }
+                }
+            }
+
+            override fun onError(e: Exception) {
+                Log.e("SIGN_UP", "Sign-up error", e)
+            }
+        })
     }
 }
